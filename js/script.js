@@ -746,7 +746,7 @@ var dddd = Math.round(Difference_In_Days);
 //var dddd = new Date() - dd;
 //var ddddd = (dddd <= 0);
 
-if(dddd > -2 && dddd < 2){
+if(dddd > -3 && dddd < 3){
 if(oh.length < 1){
 //oh[0] = i;
 oh.push(i-1);
