@@ -2,7 +2,7 @@
 if(!(window.localStorage.getItem("englishLeague"))){
 $.get("js/pl.json", function(ar){
 window.localStorage.setItem("englishLeague", JSON.stringify(ar));
-//window.location.reload();
+window.location.reload();
 console.log(JSON.stringify(window.localStorage.getItem("englishLeague"), null, 2));
 });
 }
