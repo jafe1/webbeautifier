@@ -1,14 +1,3 @@
-(function($){
-if(!(window.localStorage.getItem("englishLeague"))){
-$.get("js/pl.json", function(ar){
-window.localStorage.setItem("englishLeague", JSON.stringify(ar));
-window.location.reload();
-//console.log(JSON.stringify(window.localStorage.getItem("englishLeague"), null, 2));
-});
-}
-})(jQuery);
-
-
 var DateDiff = {
   inDays: function(d1, d2) {
     var t2 = d2.getTime();
@@ -37,12 +26,13 @@ return [('0'+(date.getMonth()+1)).slice(-2), ('0'+date.getDate()).slice(-2), dat
 }
 
 (function($){
-window.englishLeague = JSON.parse(window.localStorage.getItem("englishLeague"));
-window.standing = window.englishLeague["standing"];
-window.club = window.englishLeague["club"];
-window.fixture = window.englishLeague["fixture"];
-window.tmp = [];
-window.temp = [];
+if(!(window.localStorage.getItem("englishLeague"))){
+$.get("js/pl.json", function(ar){
+window.localStorage.setItem("englishLeague", JSON.stringify(ar));
+window.location.reload();
+//console.log(JSON.stringify(window.localStorage.getItem("englishLeague"), null, 2));
+});
+}
 
 $(".btns .imso_mh__score").eq(0).click(function(){
 $("body").removeClass("preload");
@@ -63,6 +53,20 @@ $("body").removeClass("preloads");
 $("body").removeClass("updates");
 }
 });
+
+
+})(jQuery);
+
+(function($){
+
+if(window.localStorage.getItem("englishLeague")){
+window.englishLeague = JSON.parse(window.localStorage.getItem("englishLeague"));
+window.standing = window.englishLeague["standing"];
+window.club = window.englishLeague["club"];
+window.fixture = window.englishLeague["fixture"];
+window.tmp = [];
+window.temp = [];
+
 
 $.each(standing, function(a,b){
 club[a]["id"] = b.id;
@@ -165,7 +169,9 @@ window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
 
 //$("html").html('<textarea id="txt" style="width:350px;height:400px">' + JSON.stringify(englishLeague, null, 2) + '</textarea>');
 
+$("body").removeClass("preload");
 
+}
 })(jQuery);
 
 
