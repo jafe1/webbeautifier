@@ -79,10 +79,18 @@ margin:5px auto;
 height:24px;
 }
 </style>
+<style>
+body.preload #gsr{
+display:none;
+}
+body.preload .rates{
+display:none;
+}
+</style>
 
 </head>
 
-<body class="srp EIlDfe" style="overflow:hidden">
+<body class="srp EIlDfe preload" style="overflow:hidden">
 
 <div class="preloader">
 <img src="imgs/loader.svg">
@@ -440,84 +448,4 @@ height:24px;
 <script src="js/thenBy.js"></script>
 <script src="js/script.js"></script>
 
-<script>
-$(document).ready(function($){
-
-//setTimeout(function(){
-
-//$("html").html('<textarea id="txt" style="width:350px;height:400px">' + JSON.stringify(window.englishLeague, null, 2) + '</textarea>');
-
-//}, 3000);
-
-
-});
-</script>
-<!--
-<script type="text/javascript">
-var date1 = new Date("9/23/2023");
-var date2 = new Date();
-var present_date = new Date();
-
-var Difference_In_Time = date2.getTime() - date1.getTime();
-var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-var Result = Math.round(Difference_In_Days);
-
-//console.log(Result);
-
-
-var one_day = 1000 * 60 * 60 * 24;
-
-
-var DateDiff = {
-  inDays: function(d1, d2) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
-    return parseInt((t2-t1)/(24*3600*1000));
-  },
-  inWeeks: function(d1, d2) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
-    return parseInt((t2-t1)/(24*3600*1000*7));
-  },
-  inMonths: function(d1, d2) {
-    var d1Y = d1.getFullYear();
-    var d2Y = d2.getFullYear();
-    var d1M = d1.getMonth();
-    var d2M = d2.getMonth();
-    return (d2M+12*d2Y)-(d1M+12*d1Y);
-  },
-  inYears: function(d1, d2) {
-    return d2.getFullYear()-d1.getFullYear();
-  }
-}
-
-var dString = "May, 20, 1984";
-var d1 = new Date(dString);
-var d2 = new Date();
-
-console.info(DateDiff.inDays(d1, d2));
-//console.info(DateDiff.inWeeks(d1, d2));
-//console.info(DateDiff.inMonths(d1, d2));
-//console.info(DateDiff.inYears(d1, d2));
-
-
-function daysDifference(d0, d1) {
-var diff = new Date(+d1).setHours(12) - new Date(+d0).setHours(12);
-return Math.round(diff/8.64e7);
-}
-
-// Simple formatter
-function formatDate(date){
-return [('0'+(date.getMonth()+1)).slice(-2), ('0'+date.getDate()).slice(-2), date.getFullYear()].join('/');
-}
-
-console.error(formatDate(new Date(2000,1,28)).getMonth());
-
-[[new Date(2000,1,28), new Date(2001,1,28)], [new Date(2001,1,28), new Date(2002,1,28)], [new Date(2017,0,1),  new Date(2017,1,1)]].forEach(function(dates){
-
-console.info('From ' + formatDate(dates[0]) + ' to ' + formatDate(dates[1]) + ' is ' + daysDifference(dates[0],dates[1]) + ' days<br>');
-
-});
-</script>
--->
 </html>
