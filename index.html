@@ -1,200 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en-ET" style="cursor: pointer;">
 <head>
 <meta charset="UTF-8">
-<title>Web Formatter</title>
-<meta name="description" content="Paste your code into the text box, select the tab spacing that you want and click the format button.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
- <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no" name="viewport">
+<title>Imran Soccer : Premier League</title>
+<link href="css/google-table.css" rel="stylesheet">
 
-<script src="js/polyfill.min.js" defer></script>
-<script src="js/filesaver.min.js" defer></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/highlight.pack.min.js" defer></script>
+<style>
+.now{
+color:lawngreen!important;
+}
+.now select{
+display:none!important;
+}
 
-<link rel="stylesheet" href="css/codemirror.css">
+.mc-header{
+z-index:0;
+width:100vw!important;
+max-width:100vw!important;
+margin:auto 0px;
+background-color:white;
+color:rgb(55,0,60);
+font-family: PremierSans-Regular, Arial, "Helvetica Neue", Helvetica,sans-serif;
+}
+.mc-header__content-container.wrapper{
+height:55px!important;
+}
+.mc-header__end-container{
+height:55px;
+row-gap:6px;
+column-gap:6px;
+}
+.mc-header__gameweek-selector{
+max-height:55px;
+}
+.mc-header__gameweek-selector-current.js-gameweek-selector-current{
+max-height:55px;
+padding:6px 15px!important;
+}
+.mc-header__gameweek-selector-current-gameweek--short{
+font-size:16px;
+}
+.mc-header__gameweek-selector-current-date{
+font-size:16px;
+line-height:16px;
+margin-top:-5px;
+}
+.mc-header__end-container{
+margin-left:-20px;
+}
 
-<script src="js/codemirror.min.js"></script>
-<script src="js/placeholder.min.js" async></script>
-<script src="js/css.min.js" async></script>
-<script src="js/javascript.min.js" async></script>
-<script src="js/htmlmixed.min.js" async></script>
-<script src="js/xml.min.js" async></script>
-<script src="js/clike.min.js" async></script>
-<script src="js/php.min.js" async></script>
-<script src="js/cm-resize.min.js" defer></script>
-<script src="js/clipboard.min.js" defer></script>
-<script src="js/web-formatter.js" defer></script>
+.mc-header__title{
+font-family: PremierSans-Regular, Arial, "Helvetica Neue", Helvetica,sans-serif;
+font-size:30px;
+font-weight: 400;
+letter-spacing: -0.12rem;
+line-height:30px;
+}
+.mc-header__gameweek-selector-current-icon-container{
+margin-top:-10px;
+}
 
-<link rel="stylesheet" href="css/pre.css">
-<link rel="stylesheet" href="css/site.css">
-
-<link rel="preload" href="fonts/nunito.woff2" as="font">
-<link rel="preload" href="fonts/ptmono.woff2" as="font">
+.icn {
+background-repeat: no-repeat;
+display: block;
+background-size: 100%;
+}
+.league-table__header{
+margin-top:0px!important;
+font-family: PremierSans-Regular, Arial, "Helvetica Neue", Helvetica,sans-serif;
+background-color: lawngreen;
+}
+.league-table__header-title{
+font-size:20px;
+line-height:20px;
+margin:5px auto;
+}
+.league-table__header .icn{
+height:24px;
+}
+</style>
+<style>
+body.preload #gsr{
+display:none;
+}
+body.preload .rates{
+display:none;
+}
+</style>
 
 </head>
-<body>
 
-<div class="container">
-<div class="main">
-<div class="main-header">
-<a class="main-button__auto main-button__active" lang="/" href="/">Autodetect </a>
-<a class="main-button__lang " lang="html" href="imran.html">HTML </a>
-<a class="main-button__lang " lang="xml" href="xml.html">XML </a>
-<a class="main-button__lang " lang="css" href="css.html">CSS </a>
-<a class="main-button__lang " lang="javascript" href="javascript.html">JavaScript </a>
-<a class="main-button__lang " lang="php" href="php.html">PHP </a>
-<a class="main-button__lang " lang="json" href="json.html">JSON </a>
- </div>
+<body class="srp EIlDfe preload" style="overflow:hidden">
 
-<div class="main-content">
-<textarea id="code" name="code" placeholder="Paste your code or drag a file here" autocomplete="off" autocapitalize="off" spellcheck="false" style="display: none;"></textarea>
-
-<div id="preload" class="CodeMirror cm-s-default CodeMirror-empty CodeMirror-focused">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 12px; left: 36px;">
-<textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea>
-</div>
-<div class="CodeMirror-vscrollbar" tabindex="-1" cm-not-content="true" style="bottom: 18px;">
-<div style="min-width: 1px; height: 0px;"></div>
-</div>
-<div class="CodeMirror-hscrollbar" tabindex="-1" cm-not-content="true" style="right: 18px;">
-<div style="height: 100%; min-height: 1px; width: 0px;"></div>
-</div>
-<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
-                <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
-                <div class="CodeMirror-scroll" tabindex="-1">
-                    <div class="CodeMirror-sizer" style="margin-left: 30px; margin-bottom: -17px; border-right-width: 13px; min-height: 32px; min-width: 7px; padding-right: 0px; padding-bottom: 0px;">
-                        <div style="position: relative; top: 0px;">
-                            <div class="CodeMirror-lines" role="presentation">
-                                <div role="presentation" style="position: relative; outline: none;">
-                                    <pre class="CodeMirror-placeholder CodeMirror-line-like" style="height: 0px; overflow: visible; direction: ltr;">Paste your code or drag a file here</pre>
-                                    <div class="CodeMirror-measure">
-                                        <pre class="CodeMirror-line-like"><span>xxxxxxxxxx</span></pre>
-                                    </div>
-                                    <div class="CodeMirror-measure"></div>
-                                    <div style="position: relative; z-index: 1;"></div>
-                                    <div class="CodeMirror-cursors" style>
-                                        <div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 18px;"> </div>
-                                    </div>
-                                    <div class="CodeMirror-code" role="presentation">
-                                        <div style="position: relative;">
-                                            <div class="CodeMirror-gutter-wrapper" style="left: -30px;">
-                                                <div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 0px; width: 21px;">1</div>
-                                            </div>
-                                            <pre class=" CodeMirror-line " role="presentation">                                                <span role="presentation" style="padding-right: 0.1px;">
-                                                    <span cm-text>​</span>
-                                                </span>
-                                            </pre>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="position: absolute; height: 13px; width: 1px; border-bottom: 0px solid transparent; top: 32px;"></div>
-                    <div class="CodeMirror-gutters" style="height: 45px;">
-                        <div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div>
-                    </div>
-                </div>
-                <div class="CodeMirror-Resizer"></div>
-            </div>
-
+<div class="preloader">
+<img src="imgs/loader.svg">
 </div>
 
-<div class="footer">
-<div class="footer-item_btn">
-<button class="primary-button">
-<span>Format</span>
-<div class="spinner" style="display: none">
-<div class="bounce1"></div>
-<div class="bounce2"></div>
-<div class="bounce3"></div>
-</div>
-</button>
-</div>
+</body>
 
-<div class="footer-input-item" tabindex="0">
-<span>Tab size</span>
-<input id="tabSize" class="input" value="4" maxlength="1">
-</div>
-<div class="footer-item" tabindex="0">
-<a class="footer-item__download">Download</a>
-</div>
-<div class="footer-item" tabindex="0">
-<a class="footer-item__url">Load URL</a>
-</div>
-<input type="file" id="inFile" style="display: none;">
-<div class="footer-item" tabindex="0">
-<a class="footer-item__browse">Browse</a>
-</div>
-<div class="footer-item clipboard-anchor" tabindex="0">
-<a class="footer-item__copy">Copy</a>
-</div>
-<div class="footer-item" tabindex="0">
-<a class="footer-item__clear">Clear</a>
-</div>
-</div>
-
-</div>
-</div>
-
-<a class="prototype"></a>
-
-<div class="modal show" id="modalWindow" tabindex="-1" role="dialog" aria-hidden="true">
-<div class="modal-dialog " role="document">
-<div class="modal-content">
-<div class="modal-header">
-<div class="h5 modal-title w-100"></div>
-<button type="button" class="close " data-dismiss="modal" aria-label="Close" style="outline: none">
-<span aria-hidden="true">×</span>
-</button>
-</div>
-<div class="modal-body">
-<input class="input input-modal" autocomplete="off" autocapitalize="off" spellcheck="false">
-<div class="modal-error" hidden>Wrong URL or the server does not allow cross-origin requests.</div>
-</div>
-<div class="modal-footer justify-content-center mt-3">
-<button type="button" class="modal-footer-button"></button>
-</div>
-</div>
-</div>
-</div>
-
-<div class="modal-backdrop show" style="display: none;"></div>
+<script src="js/jquery-3.1.1.min.js"></script>
 
 <script>
-$(document).ready(function() {
-var text = {"load":{"error":"Wrong URL or the server does not allow cross-origin requests.","header":"Enter URL","button":"Load"},"download":{"header":"Enter file name","button":"Download"}};
-var menuId = "/";
-var menu = [{"menuName":"Autodetect","name":"/"},{"menuName":"HTML","parser":"html","mime":"text/html","extension":"html","mode":"htmlmixed","name":"html","language":"html","isAutoDetect":true},{"menuName":"XML","parser":"html","mime":"text/xml","extension":"xml","mode":"xml","name":"xml","language":"xml","isAutoDetect":true},{"menuName":"CSS","parser":"css","mime":"text/css","extension":"css","mode":"css","name":"css","language":"css","isAutoDetect":true},{"menuName":"JavaScript","parser":"babel","mime":"text/javascript","extension":"js","mode":"text/javascript","name":"javascript","language":"javascript","isAutoDetect":true},{"menuName":"PHP","parser":"php","mime":"application/php","extension":"php","mode":"application/x-httpd-php","name":"php","language":"php","isAutoDetect":true},{"menuName":"JSON","parser":"json","mime":"text/json","extension":"json","mode":"application/ld+json","name":"json","language":"json","isAutoDetect":true}];
-new WebFormatter({menuId : menuId, text: text, menu: menu });
-
-
-
-//$(".modal-footer-button").html('<span>' + $(".modal-footer-button").text() + '</span><div class="spinner" style="display: block"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>');
-
-//$(".input.input-modal").val("http://localhost:7700/0-candycrush.fandom/0-webformatter-com/css.html");
-
-//$.get("http://localhost:7700/0-candycrush.fandom/0-webformatter-com/css.html", function(result){
-//console.log(result);
-//});
-
-});
+setTimeout(function(){
+window.location.href = "imran.html";
+}, 500);
 </script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/647c9b867957702c744bb14d/1h23bv2ps';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-</body>
 </html>
