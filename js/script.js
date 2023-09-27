@@ -1,3 +1,13 @@
+(function($){
+if(!(localStorage.getItem("englishLeague"))){
+$.get("js/pl.json", function(ar){
+localStorage.setItem("englishLeague", JSON.stringify(ar));
+window.location.reload();
+});
+}
+})(jQuery);
+
+
 var DateDiff = {
   inDays: function(d1, d2) {
     var t2 = d2.getTime();
@@ -309,7 +319,6 @@ return '<div class="match" data-md="matchday' + x + '" data-game="game' + y + '"
 }
 
 });
-
 
 
 $(document).ready(function(){
