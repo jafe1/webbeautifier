@@ -28877,4 +28877,349 @@ background-color:rgba(38,115,218,0.3);
 color:white;
 }
 
+@font-face{font-family:PremierSans-Light;src:url(PremierLeagueW01-Light.eot?#iefix);src:url(PremierLeagueW01-Light.eot?#iefix) format("eot"),url(PremierLeagueW01-Light.woff2) format("woff2"),url(PremierLeagueW01-Light.woff) format("woff"),url(PremierLeagueW01-Light.ttf) format("truetype"),url(PremierLeagueW01-Light.svg#51b3f097-4f77-44d6-84fa-d4ccabf83ea2) format("svg")}
+@font-face{font-family:PremierSans-Light-Italic;src:url(PremierLeagueW01-LightIt.eot?#iefix);src:url(PremierLeagueW01-LightIt.eot?#iefix) format("eot"),url(PremierLeagueW01-LightIt.woff2) format("woff2"),url(PremierLeagueW01-LightIt.woff) format("woff"),url(PremierLeagueW01-LightIt.ttf) format("truetype"),url(PremierLeagueW01-LightIt.svg#dd21a2ce-363d-4fd5-8ea4-8bca54d910dc) format("svg")}
+@font-face{font-family:PremierSans-Regular;src:url(PremierLeagueW01-Regular.eot?#iefix);src:url(PremierLeagueW01-Regular.eot?#iefix) format("eot"),url(PremierLeagueW01-Regular.woff2) format("woff2"),url(PremierLeagueW01-Regular.woff) format("woff"),url(PremierLeagueW01-Regular.ttf) format("truetype"),url(PremierLeagueW01-Regular.svg#7750d31b-4f46-466c-a7f2-d0071c638678) format("svg")}@font-face{font-family:PremierSans-Bold-Italic;src:url(PremierLeagueW01-BoldItalic.eot?#iefix);src:url(PremierLeagueW01-BoldItalic.eot?#iefix) format("eot"),url(PremierLeagueW01-BoldItalic.woff2) format("woff2"),url(PremierLeagueW01-BoldItalic.woff) format("woff"),url(PremierLeagueW01-BoldItalic.ttf) format("truetype"),url(PremierLeagueW01-BoldItalic.svg#2733e5e4-db1c-48a7-b96e-1393afe6a2e3) format("svg")}@font-face{font-family:PremierSans-Italic;src:url(PremierLeagueW01-Italic.eot?#iefix);src:url(PremierLeagueW01-Italic.eot?#iefix) format("eot"),url(PremierLeagueW01-Italic.woff2) format("woff2"),url(PremierLeagueW01-Italic.woff) format("woff"),url(PremierLeagueW01-Italic.ttf) format("truetype"),url(PremierLeagueW01-Italic.svg#b58dc997-6b5c-44e1-9db2-b7c5548efd02) format("svg")}@font-face{font-family:PremierSans-Bold;src:url(PremierLeagueW01-Bold.eot?#iefix);src:url(PremierLeagueW01-Bold.eot?#iefix) format("eot"),url(PremierLeagueW01-Bold.woff2) format("woff2"),url(PremierLeagueW01-Bold.woff) format("woff"),url(PremierLeagueW01-Bold.ttf) format("truetype"),url(PremierLeagueW01-Bold.svg#6fd2576b-b17d-42bb-8069-d902dd3f6a6e) format("svg")}@font-face{font-family:PremierSans-Heavy;src:url(PremierLeagueW01-Heavy.eot?#iefix);src:url(PremierLeagueW01-Heavy.eot?#iefix) format("eot"),url(PremierLeagueW01-Heavy.woff2) format("woff2"),url(PremierLeagueW01-Heavy.woff) format("woff"),url(PremierLeagueW01-Heavy.ttf) format("truetype")}
 
+.light{font-family:PremierSans-Light,Arial,Helvetica Neue,Helvetica,sans-serif}.heavy,.light{font-weight:400}
+.heavy{font-family:PremierSans-Bold,Arial,Helvetica Neue,Helvetica,sans-serif}
+.pageTitle{font-size:7.6rem;line-height:9.1rem}
+
+
+.mc-header {
+	position: relative;
+	z-index: -1;
+	box-shadow: 0 4px 12px 0 rgba(55,0,60,.12);
+}
+.mc-header__content-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.mc-header__content-container:before {
+	display: none;
+}
+.mc-header.is-open .mc-header__gameweek-selector-list-container {
+	height: auto;
+}
+.mc-header__title {
+	font-size: 3rem;
+	line-height: 4.5rem;
+	letter-spacing: -.12rem;
+	font-family: PremierSans-Regular,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+}
+.mc-header__title strong {
+	font-family: PremierSans-Heavy,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+}
+.mc-header__end-container {
+	display: flex;
+	align-items: center;
+	gap: .8rem;
+}
+.mc-header__end-container .dropDown:before {
+	display: none;
+}
+.mc-header__gameweek-selector {
+	position: relative;
+}
+.mc-header__gameweek-selector-current {
+	width: 21.6rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: .8rem 1.6rem;
+	cursor: pointer;
+}
+.mc-header__gameweek-selector-current-subtitle {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5rem;
+	letter-spacing: -.04rem;
+	color: #734c76;
+}
+.mc-header__gameweek-selector-current-gameweek {
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+	letter-spacing: -.064rem;
+}
+.mc-header__gameweek-selector-current-gameweek--short {
+	display: none;
+}
+.mc-header__gameweek-selector-current-date {
+	font-size: 1rem;
+	font-family: PremierSans-Bold,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+	line-height: 1.5rem;
+	letter-spacing: -.04rem;
+}
+.mc-header__gameweek-selector-current-icon {
+	width: 1rem;
+	height: 1rem;
+}
+.mc-header__gameweek-selector-list-container {
+	background: #fff;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	height: 0;
+	width: 56.4rem;
+	max-width: 100vw;
+	overflow: hidden;
+	transition: .2s ease-in-out;
+	box-shadow: 0 4px 12px 0 rgba(55,0,60,.12);
+}
+.mc-header__gameweek-selector-list-container:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(137.27deg,#05f0ff 19.85%,#7367ff 91.08%,#963cff 113.26%);
+	height: .2rem;
+	width: 100%;
+}
+.mc-header__gameweek-selector-list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: .8rem;
+	padding: 1.6rem;
+}
+.mc-header__gameweek-selector-list-item {
+	width: 10rem;
+	border: .1rem solid #ebe5eb;
+	padding: .8rem;
+	background: #ebe5eb;
+	border-radius: .4rem;
+}
+.mc-header__gameweek-selector-list-item:hover:not(.active) {
+	background: #f5f2f5;
+}
+.mc-header__gameweek-selector-list-item.active {
+	background: #37003c;
+}
+.mc-header__gameweek-selector-list-item.active .mc-header__gameweek-selector-list-item-date,.mc-header__gameweek-selector-list-item.active .mc-header__gameweek-selector-list-item-gameweek {
+	color: #fff;
+}
+.mc-header__gameweek-selector-list-item.complete {
+	background: #fff;
+}
+.mc-header__gameweek-selector-list-item-link {
+	text-decoration: none;
+}
+.mc-header__gameweek-selector-list-item-gameweek {
+	font-size: 1.2rem;
+	font-family: PremierSans-Bold,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+	line-height: 1.8rem;
+	letter-spacing: -.048rem;
+}
+.mc-header__gameweek-selector-list-item-date {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5rem;
+	letter-spacing: -.04rem;
+}
+.mc-header .pollsBtn {
+	display: flex;
+	align-items: center;
+	gap: 1.7rem;
+	cursor: pointer;
+}
+.mc-header .pollsBtn__icon-container {
+	position: relative;
+}
+.mc-header .pollsBtn__icon {
+	width: 2.4rem;
+	height: 2.4rem;
+}
+.mc-header .pollsBtn .fanPollQuestionNumberContainer {
+	position: absolute;
+	top: -.2rem;
+	right: -.2rem;
+	display: flex;
+	width: 0;
+	height: 0;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+}
+.mc-header .pollsBtn .fanPollQuestionNumberContainer.has-questions {
+	width: 1.2rem;
+	height: 1.2rem;
+	background: #963cff;
+}
+.mc-header .pollsBtn .fanPollQuestionNumberContainer .questions {
+	line-height: 0;
+}
+.mc-header .pollsBtn .fanPollQuestionNumberContainer strong {
+	color: #fff;
+	font-size: .8rem;
+}
+
+@media (max-width:1023px) {
+	.mc-header {
+		padding: 0 .8rem;
+		width: calc(100% + 1.6rem);
+		left: -.8rem;
+		z-index: 70;
+	}
+	.mc-header__title {
+		font-size: 2.5rem;
+		line-height: 3.8rem;
+		letter-spacing: -.1rem;
+	}
+	.mc-header__gameweek-selector-list-container {
+		right: -.8rem;
+	}
+	.mc-header__gameweek-selector-current {
+		justify-content: flex-end;
+		width: auto;
+	}
+	.mc-header__gameweek-selector-current-subtitle {
+		display: none;
+	}
+	.mc-header__gameweek-selector-list {
+		justify-self: center;
+	}
+	.mc-header__gameweek-selector-current-gameweek--long {
+		display: none;
+	}
+	.mc-header__gameweek-selector-current-gameweek--short {
+		display: block;
+	}
+	.mc-header__gameweek-selector-list-item {
+		width: calc(33% - .5rem);
+	}
+}
+.matchweekDropdown {
+	border: .1rem solid #ebe5eb;
+	border-radius: .4rem;
+	max-width: 32.8rem;
+	margin-top: 2.4rem;
+}
+@media (max-width:700px) {
+	.matchweekDropdown {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+
+.league-table__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2.4rem;
+}
+.league-table__header-title,.league-table__header span {
+	font-family: PremierSans-Heavy,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+}
+.league-table__header-title {
+	font-size: 2.5rem;
+	line-height: 3rem;
+	letter-spacing: -.1rem;
+}
+@media (max-width:700px) {
+	.league-table__header {
+		flex-direction: column-reverse;
+	}
+
+	.league-table .toggle-btn {
+		order: 1;
+	}
+
+	.league-table .icn {
+		width: 10.5rem;
+		height: 2rem;
+	}
+}
+
+
+.liveLeague {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 0 .5rem;
+}
+.liveLeague span {
+	font-size: 1.2rem;
+	font-family: PremierSans-Heavy,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+}
+@media (max-width:700px) {
+	.liveLeague span {
+		font-size: 1.1rem;
+	}
+}
+.liveLeague .live-animation {
+	margin-right: 1rem;
+}
+.liveLeague__live {
+	font-family: PremierSans-Heavy,Arial,Helvetica Neue,Helvetica,sans-serif;
+	font-weight: 400;
+	background: linear-gradient(245.98deg,#ff6900 -48.99%,#ff6604 -32.53%,#ff6010 -14.01%,#ff5625 4.51%,#ff4743 23.03%,#ff3468 41.55%,#ff2882 53.89%,#963cff 156.77%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+	text-transform: uppercase;
+}
+.liveLeague:not(.is-active) .live-animation span {
+	animation: none;
+}
+.live-animation {
+	display: inline-block;
+}
+.live-animation span {
+	width: .8rem;
+	height: .8rem;
+	border-radius: .9rem;
+	background: linear-gradient(245.98deg,#ff6900 -48.99%,#ff6604 -32.53%,#ff6010 -14.01%,#ff5625 4.51%,#ff4743 23.03%,#ff3468 41.55%,#ff2882 53.89%,#963cff 156.77%);
+	animation: a 2s infinite;
+	display: block;
+	margin: 0 auto;
+}
+@keyframes a {
+	0% {
+		transform: scale(.95);
+		box-shadow: 0 0 0 0 rgba(255,40,130,.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255,40,130,0);
+	}
+
+	to {
+		transform: scale(.95);
+		box-shadow: 0 0 0 0 rgba(255,40,130,0);
+	}
+}
+@keyframes b {
+	20% {
+		background: #05f0ff;
+	}
+
+	81% {
+		background: #7367ff;
+	}
+
+	to {
+		background: #963cff;
+	}
+}
+@keyframes c {
+	0% {
+		width: 0;
+	}
+
+	to {
+		width: 10rem;
+	}
+}
