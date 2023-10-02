@@ -26,13 +26,12 @@ return [('0'+(date.getMonth()+1)).slice(-2), ('0'+date.getDate()).slice(-2), dat
 }
 
 (function($){
-if(!(window.localStorage.getItem("englishLeague"))){
-$.get("js/pl.json", function(ar){
-window.localStorage.setItem("englishLeague", JSON.stringify(ar));
-window.location.reload();
-//console.log(JSON.stringify(window.localStorage.getItem("englishLeague"), null, 2));
-});
-}
+window.englishLeague = JSON.parse(localStorage.getItem("englishLeague"));
+window.standing = englishLeague["standing"];
+window.club = englishLeague["club"];
+window.fixture = englishLeague["fixture"];
+window.tmp = [];
+window.temp = [];
 
 $(".btns .imso_mh__score").eq(0).click(function(){
 $("body").removeClass("preload");
@@ -53,20 +52,6 @@ $("body").removeClass("preloads");
 $("body").removeClass("updates");
 }
 });
-
-
-})(jQuery);
-
-(function($){
-
-if(window.localStorage.getItem("englishLeague")){
-window.englishLeague = JSON.parse(window.localStorage.getItem("englishLeague"));
-window.standing = window.englishLeague["standing"];
-window.club = window.englishLeague["club"];
-window.fixture = window.englishLeague["fixture"];
-window.tmp = [];
-window.temp = [];
-
 
 $.each(standing, function(a,b){
 club[a]["id"] = b.id;
@@ -161,7 +146,7 @@ temp.push(b.name);
 });
 englishLeague.standing = arr;
 
-window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
+localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
 
 //$("html").html('<textarea id="txt" style="width:350px;height:400px">' + JSON.stringify(club, null, 2) + '</textarea>');
 
@@ -169,9 +154,7 @@ window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
 
 //$("html").html('<textarea id="txt" style="width:350px;height:400px">' + JSON.stringify(englishLeague, null, 2) + '</textarea>');
 
-$("body").removeClass("preload");
 
-}
 })(jQuery);
 
 
@@ -307,10 +290,11 @@ englishLeague[((standing[temp.indexOf(ob[m][g]["home"])])["last"])[xx-1]] = zhh;
 englishLeague[((standing[temp.indexOf(ob[m][g]["away"])])["last"])[xx-1]] = zaa;
 englishLeague.fixture = ob;
 
-window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
+localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
 window.location.reload();
 });
 });
+
 }, 1000);
 
 });
@@ -326,6 +310,7 @@ return '<div class="match" data-md="matchday' + x + '" data-game="game' + y + '"
 }
 
 });
+
 
 
 $(document).ready(function(){
@@ -488,18 +473,18 @@ $(".Rqwdve.RQCbNe.uOF0oe").eq(19).css("display", "flex!important");
 
 
 function drawName(id, rank, name, MP, W, D, L, Pts, GF, GA, GD, last, live){
-return '<tr id="' + id + '" class="imso-loa imso-hov"><td class="nwxKge snctkc e9fBA CuWfJb xL0E7c" aria-hidden="true"></td><td class="fbf28d wxNiFd B1pJhb e9fBA uOF0oe AXYSPc lWlL8e"><div class="gDo0uc tgaaSb G017Fd"><div class="iU5t0d">' + rank + '</div></div><div class="tgaaSb G017Fd" aria-hidden="true"><span class="iU5t0d b8Oacc fz3Rib"><img class="imso_btl__mh-logo" height="24px" src="imgs/' + id + '_48x48.png" width="24px"></span></div><div class="tgaaSb G017Fd" style="width:12px"></div></td><td class="tcwpB fbf28d B1pJhb e9fBA uOF0oe fI7lFd n1i1Xc xL0E7c"><div class="e6E1Yd bhlgmf snctkc"><div class="imso-hide-overflow C1gYkd"><span class="ellipsisize hsKSJe">' + name + '</span><br></div>' + live + '</div></td><td class="xkW0Cc snctkc e9fBA xL0E7c" contenteditable>' + MP + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + W + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + D + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + L + '</td><td class="xkW0Cc snctkc e9fBA K7J2Cb xL0E7c">' + Pts + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c" contenteditable>' + GF + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + GA + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + GD + '</td><td class="gwqH4e xkW0Cc snctkc e9fBA xL0E7c lastf" role="cell"><div class="t0t45c II8W2d"><div class="mzZLbb" aria-hidden="true">' + last + '</div></div></td><td class="w2Mymf e9fBA" aria-hidden="true"></td></tr>';
+return '<tr id="' + id + '" class="imso-loa imso-hov"><td class="nwxKge snctkc e9fBA CuWfJb xL0E7c" aria-hidden="true"></td><td class="fbf28d wxNiFd B1pJhb e9fBA uOF0oe AXYSPc lWlL8e"><div class="gDo0uc tgaaSb G017Fd"><div class="iU5t0d">' + rank + '</div></div><div class="tgaaSb G017Fd" aria-hidden="true"><span class="iU5t0d b8Oacc fz3Rib"><img class="imso_btl__mh-logo" height="24px" src="img/' + id + '_48x48.png" width="24px"></span></div><div class="tgaaSb G017Fd" style="width:12px"></div></td><td class="tcwpB fbf28d B1pJhb e9fBA uOF0oe fI7lFd n1i1Xc xL0E7c"><div class="e6E1Yd bhlgmf snctkc"><div class="imso-hide-overflow C1gYkd"><span class="ellipsisize hsKSJe">' + name + '</span><br></div>' + live + '</div></td><td class="xkW0Cc snctkc e9fBA xL0E7c" contenteditable>' + MP + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + W + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + D + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + L + '</td><td class="xkW0Cc snctkc e9fBA K7J2Cb xL0E7c">' + Pts + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c" contenteditable>' + GF + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + GA + '</td><td class="xkW0Cc snctkc e9fBA xL0E7c">' + GD + '</td><td class="gwqH4e xkW0Cc snctkc e9fBA xL0E7c lastf" role="cell"><div class="t0t45c II8W2d"><div class="mzZLbb" aria-hidden="true">' + last + '</div></div></td><td class="w2Mymf e9fBA" aria-hidden="true"></td></tr>';
 }
 
 function drawLast(ar,r){
 var l = "";
-l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-5] + '.png" class="nB9CIe"></div>';
-l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-4] + '.png" class="nB9CIe"></div>';
-l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-3] + '.png" class="nB9CIe"></div>';
-l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-2] + '.png" class="nB9CIe"></div>';
-l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-1] + '.png" class="nB9CIe"></div>';
+l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-1] + '.png" class="nB9CIe"></div>';
+l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-2] + '.png" class="nB9CIe"></div>';
+l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-3] + '.png" class="nB9CIe"></div>';
+l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-4] + '.png" class="nB9CIe"></div>';
+l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-5] + '.png" class="nB9CIe"></div>';
 //for (var i = 0; i < 5; i++){
-//l = l + '<div class="XqaACe BPu3kf"><img src="imgs/' + ar[r-1] + '.png" class="nB9CIe"></div>';
+//l = l + '<div class="XqaACe BPu3kf"><img src="img/' + ar[r-1] + '.png" class="nB9CIe"></div>';
 //}
 return l;
 }
@@ -650,7 +635,7 @@ obj.push(o);
 });
 
 englishLeague.standing = obj;
-window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
+localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
 window.location.reload();
 });
 
@@ -746,7 +731,7 @@ var dddd = Math.round(Difference_In_Days);
 //var dddd = new Date() - dd;
 //var ddddd = (dddd <= 0);
 
-if(dddd > -3 && dddd < 3){
+if(dddd > -2 && dddd < 2){
 if(oh.length < 1){
 //oh[0] = i;
 oh.push(i-1);
@@ -964,8 +949,8 @@ u["matchday" + $(this).attr("data-id")]["game" + t]["date"] = new Date($.trim($(
 
 
 englishLeague.fixture = u;
-window.localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
-window.englishLeague = JSON.parse(window.localStorage.getItem("englishLeague"));
+localStorage.setItem("englishLeague", JSON.stringify(englishLeague));
+window.englishLeague = JSON.parse(localStorage.getItem("englishLeague"));
 window.standing = englishLeague["standing"];
 window.club = englishLeague["club"];
 window.fixture = englishLeague["fixture"];
@@ -1046,7 +1031,7 @@ s["away"] = $.trim($("#CID_238072083 span").html());
 o[d][z] = s;
 fix[d][z] = o[d][z];
 
-//window.localStorage.setItem("fix", JSON.stringify(fix, null, 2));
+//localStorage.setItem("fix", JSON.stringify(fix, null, 2));
 
 $("body").removeClass("preload");
 setTimeout(function(){
